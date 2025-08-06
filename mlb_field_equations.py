@@ -425,7 +425,7 @@ def houston_astros(theta_deg):
         return -2943.702 / (np.sin(theta) - (9.23423 * np.cos(theta)))
     # Equation determined without fangraphs data
     elif 34.0 <= theta_deg < 50.2:
-        return 588.57 / (np.sin(theta) + (1.038 * np.sin(theta)))
+        return 588.57 / (np.sin(theta) + (1.038 * np.cos(theta)))
     elif 50.2 <= theta_deg < 67.7:
         return 347.579 / (np.sin(theta) + (0.120385 * np.cos(theta)))
     elif 67.7 <= theta_deg < 67.9:
@@ -1128,4 +1128,5 @@ def washington_nationals(theta_deg):
     elif 76.5 <= theta_deg < 90.0:
         return 336 / (np.sin(theta) - (0.221987 * np.cos(theta)))
     else:
+
         return None
