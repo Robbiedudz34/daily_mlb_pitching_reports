@@ -154,7 +154,7 @@ def athletics(theta_deg):
             return r1 + t * (r2 - r1)
 
     return None  # fallback
-
+    
 def atlanta_braves(theta_deg):
     """
     Returns the distance "r" in feet to the outfield wall
@@ -162,30 +162,22 @@ def atlanta_braves(theta_deg):
     
     My estimate - no fangraphs data available.
     """
-    data = [
-        (0, 325),
-        (23, 375),
-        (38, 402),
-        (51, 402),
-        (66, 385),
-        (76, 380),
-        (90, 335)
-    ]
-
-    # Return None if out of bounds
-    if theta_deg < 0 or theta_deg > 90:
-        return None
-
-    # Interpolate linearly between the two surrounding points
-    for i in range(len(data) - 1):
-        theta1, r1 = data[i]
-        theta2, r2 = data[i + 1]
-        if theta1 <= theta_deg <= theta2:
-            # Linear interpolation
-            t = (theta_deg - theta1) / (theta2 - theta1)
-            return r1 + t * (r2 - r1)
-
-    return None  # fallback
+    theta = np.radians(theta_deg)
+    
+    if 0.0 <= theta_deg < 23:
+        return -2358.6904452 / (np.sin(theta) - (7.257509 * np.cos(theta)))
+    elif 23 <= theta_deg < 38:
+        return 1373.4019163 / (np.sin(theta) + (3.554217 * np.cos(theta)))
+    elif 38 <= theta_deg < 51:
+        return 569.8539117 / (np.sin(theta) + (1.017607 * np.cos(theta)))
+    elif 51 <= theta_deg < 66:
+        return 415.5627983 / (np.sin(theta) + (0.407729 * np.cos(theta)))
+    elif 66 <= theta_deg < 76:
+        return 392.8771560 / (np.sin(theta) + (0.262860 * np.cos(theta)))
+    elif 76 <= theta_deg < 90:
+        return 335 / (np.sin(theta) - (0.366717 * np.cos(theta)))
+    else:
+        return None  # fallback
 
 def baltimore_orioles(theta_deg):
     """
@@ -1130,3 +1122,4 @@ def washington_nationals(theta_deg):
     else:
 
         return None
+
